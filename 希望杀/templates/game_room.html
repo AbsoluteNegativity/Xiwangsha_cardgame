@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>希望杀 - 游戏房间</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>游戏房间 {{ room_id }}</h1>
+            <a href="/game" class="back-link">返回大厅</a>
+        </header>
+        
+        <main>
+            <div class="game-room">
+                <h2>房间信息</h2>
+                <p>房间ID: {{ room_id }}</p>
+                <p>状态: 等待玩家加入...</p>
+                
+                <div class="player-list">
+                    <h3>玩家列表</h3>
+                    <div id="players">
+                        <p>暂无玩家</p>
+                    </div>
+                </div>
+                
+                <div class="game-controls">
+                    <button onclick="startGame()" class="btn btn-primary" disabled>
+                        开始游戏 (需要2名玩家)
+                    </button>
+                    <button onclick="endTurn()" class="btn btn-primary" style="display: none;">
+                        结束回合
+                    </button>
+                    <button onclick="leaveRoom()" class="btn btn-secondary">
+                        离开房间
+                    </button>
+                </div>
+                
+                <!-- 手牌区域 -->
+                <div class="hand-cards" style="display: none;">
+                    <h3>我的手牌</h3>
+                    <div id="hand-cards" class="cards-container">
+                        <!-- 手牌将在这里动态显示 -->
+                    </div>
+                </div>
+                
+                <!-- 卡牌使用界面 -->
+                <div class="card-usage" style="display: none;">
+                    <h3>使用卡牌</h3>
+                    <div id="card-usage-interface">
+                        <p>选择要使用的卡牌和目标玩家</p>
+                        <div id="target-selection" style="display: none;">
+                            <label>选择目标:</label>
+                            <select id="target-player">
+                                <!-- 目标玩家选项将在这里动态显示 -->
+                            </select>
+                            <button onclick="confirmUseCard()" class="btn btn-success">确认使用</button>
+                            <button onclick="cancelUseCard()" class="btn btn-secondary">取消</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-log">
+                    <h3>游戏日志</h3>
+                    <div id="game-log" class="log-container">
+                        <p>等待游戏开始...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="message" class="message"></div>
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/game_room.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>希望杀 - 卡牌游戏</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>希望杀</h1>
+            <p>基于Flask的多人卡牌游戏</p>
+        </header>
+        
+        <main>
+            <div class="welcome-section">
+                <h2>欢迎来到希望杀！</h2>
+                <p>这是一个类似三国杀的卡牌游戏，支持2人对战。</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button onclick="window.location.href='/game'" class="btn btn-primary">
+                    进入游戏
+                </button>
+                <button onclick="checkServerStatus()" class="btn btn-secondary">
+                    检查服务器状态
+                </button>
+            </div>
+            
+            <div id="status-message" class="status-message"></div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 希望杀游戏</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
